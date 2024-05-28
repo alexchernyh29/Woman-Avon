@@ -2,9 +2,8 @@ mixin result()
     +b('section').result
         +e.content
             +e.wrap
-                +e.img
-                    img(src='./images/result-img-1.png')
                 +e.answer
-                    +e.chapter Результат:
-                    +e.text Вы правильно ответили на 3 из 6 вопросов
-                    +e.title
+                    +e('p').chapter Результат:
+                    +e('p').text Вы правильно ответили на 3 из 6 вопросов
+                    +e('p').title
+                    +e('button').button Пройти ещё раз

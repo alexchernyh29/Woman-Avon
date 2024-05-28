@@ -19,6 +19,15 @@ $(() => {
 		$(".test__counter span").html(activeIndex + 1);
 		$(".test__title").html(questions[activeIndex].title);
 		$(".test__topic").html(questions[activeIndex].topic);
+		$(".test__picture").html(
+			`<img src="${questions[activeIndex].image}" />`
+		);
+		$(".test__popup__img").html(
+			`<img src="${questions[activeIndex].image_popup}" />`
+		); 
+		$(".test__popup__img-mobile").html(
+			`<img src="${questions[activeIndex].image_popup}" />`
+		);
 	}
 
 	$('.test__item').on('click', function(){
@@ -32,7 +41,12 @@ $(() => {
 		$(this).removeClass('active-hover');
 	  });
 
+	$('.test__close').on('click', function(){
+		$(".test__popup").fadeOut();
+	});
+
 	$(".test").on("click", ".test__item", function (e) {
+		$(".test__popup").fadeIn();
 		setTimeout(() => {
 			$(".test__item").removeClass("pink");
 			$(".test__item").removeClass('active-hover');
@@ -41,7 +55,8 @@ $(() => {
 			if (Answer) {
 				correctAnswers++;
 			}
-			activeIndex += 1;;
+			$(".test__popup__text").text(questions[activeIndex].answers[id].advice);
+			activeIndex += 1;
 			if (activeIndex >= questions.length) {
 				$(".result").addClass("is-active");
 				$(".result__text").text("Вы правильно ответили на " + correctAnswers + " из " + questions.length + " вопросов");
@@ -61,7 +76,7 @@ $(() => {
 				activeIndex = 0;
 			}
 			showQuestion();
-		}, 1000)
+		}, 0)
 		
 	});
 
@@ -69,6 +84,7 @@ $(() => {
 		activeIndex = 0;
 		correctAnswers = 0;
 		showQuestion();
+		$(".test__popup").hide();
 	}
 
 	showQuestion();

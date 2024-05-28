@@ -1,62 +1,64 @@
 .test
     position relative
-    background-color $c-blue
+    background-color $c-white
     height 100%
-    padding w(90) w(80)
-    +below(2560px)
-        height 100vh
     +below(801px)
         height 100vh
-        overflow scroll
-        padding wm(45) wm(30)
+        overflow-y hidden
 
     &__wrap
         position relative
         display flex
-        flex-flow column
-        border 1px solid $c-white
-        padding w(50) w(95)
-        +below(801px)
-            padding wm(30) wm(25)
-
-    &__question
-        display flex
         flex-direction row
-        height w(90)
+        align-items center
+        justify-content center
+        border 1px solid $c-white
+        height 100vh
         +below(801px)
-            height wm(180)
+            align-items flex-start
+            margin wm(55) wm(50)
+
+    &__picture
+        width w(1000)
+        height 100%
+        align-content center
+        margin-right w(100)
+        img
+            width 100%
+        
+        +below(801px)
+            display none
+
+    &__info
+        max-width 50%
+        padding-top w(155)
+        margin-right w(150)
+        border-top w(1) solid $c-pink
+        +below(801px)
+            max-width 100%
+            padding-top wm(55)
+            margin-right wm(0)
 
     &__topic
-        font-family $ff-Montserrat-Medium
+        font-family $ff-Montserrat
         font-size w(51)
         font-weight 700
         line-height w(66)
-        text-transform uppercase
-        padding-left w(10)
         color #e5004a
+        +below(801px)
+            font-size wm(60)
+            line-height wm(78)
 
     &__title
-        font-family $ff-Montserrat-Medium
-        font-size w(28)
-        font-weight 500
-        line-height w(40)
-        text-transform uppercase
-        padding-left w(10)
-        color $c-white
-        +below(801px)
-            font-size wm(34)
-            line-height wm(47)
-            padding-left wm(20)
-
-    &__counter
-        color $c-white
+        margin-top w(35)
         font-family $ff-Montserrat
-        font-size w(20)
-        line-height w(30)
-        font-weight 400
+        font-size w(25)
+        font-weight 600
+        line-height w(32)
+        color $c-black
         +below(801px)
             font-size wm(40)
-            line-height wm(41)
+            line-height wm(52)
 
     &__list
         position relative
@@ -64,7 +66,6 @@
         display flex
         flex-flow column
         margin-top w(20)
-        margin-right w(50)
         +below(801px)
             margin-top wm(20)
             margin-right wm(0)
@@ -72,13 +73,14 @@
     &__item
         cursor pointer
         box-sizing border-box
-        border 1px solid $c-white
-        padding w(10) w(15)
-        max-width w(795)
-        height w(65)
+        border 1px solid $c-pink
+        border-radius w(50)
+        background-color $c-white
+        padding w(35) w(20)
         margin-top w(25)
         transition .5s
         display flex
+        justify-content center
         flex-direction row
         align-items center
         &:first-child
@@ -86,40 +88,130 @@
         
         +below(801px)
             padding wm(18)
-            max-width 100%
-            height wm(180)
             margin-top wm(35)
-
-    &__sign
-        position relative
-        display flex
-        flex-direction row
-        justify-content flex-start
-        align-items flex-start
-
-        span
-            color $c-white
-            font-family $ff-Montserrat
-            font-weight 700
-            font-size w(14)
-            +below(801px)
-                font-size wm(28)
-                line-height wm(28)
+            border-radius wm(100)
        
     &__text
         font-family $ff-Montserrat
-        color $c-white
+        color $c-black
         font-size w(18)
         font-weight 400
         line-height w(18)
-        text-transform uppercase
         padding-left w(10)
         align-self center
+        text-align center
         +below(801px)
-            padding-left wm(15)
             font-size wm(30)
-            line-height wm(37)
-            align-self flex-start
+            line-height wm(39)
+    &__popup
+        display none
+        position absolute
+        padding w(25) w(85) w(135)
+        max-width w(1600)
+        width 100%
+        top 50%
+        left 50%
+        transform translate(-50%, -50%)
+        border w(1.35) solid #e5004a
+        border-radius w(30)
+        background $c-white
+        +below(801px)
+            border wm(1.35) solid #e5004a
+            border-radius wm(30)
+            padding wm(25) wm(20) wm(35)
+        
+    &__close
+        position absolute
+        right w(25)
+        width w(80)
+        img
+            width 100%
+        +below(801px)
+            width wm(100)
+
+    &__popup__wrap
+        margin-top w(120)
+        display flex
+        flex-direction row
+        justify-content space-between
+
+    &__popup__mobile
+        display none
+        +below(801px)
+            display flex
+            flex-direction column
+            align-items center
+
+    &__popup__info
+        display block
+        +below(801px)
+            display none
+
+    &__info__mobile
+        display flex
+        flex-direction row
+        +below(801px)
+            margin-top wm(40)
+
+    &__popup__title
+        margin-bottom w(50)
+        font-family $ff-Montserrat
+        color $c-pink
+        font-size w(40)
+        font-weight 400
+        line-height w(52)
+        span
+            font-weight 700
+            font-family $ff-Montserrat-Medium
+
+        +below(801px)
+            font-size wm(35)
+            line-height wm(45)
+
+    &__popup__text
+        font-family $ff-Montserrat
+        color $c-black
+        font-size w(25)
+        font-weight 400
+        line-height w(32)
+        +below(801px)
+            margin wm(20)
+            font-size wm(30)
+            line-height wm(39)
+
+    &__author-img
+        width w(2900)
+        margin-right w(50)
+        img
+            width 100%
+        +below(801px)
+            display none
+
+    &__author-img-mobile
+        width w(2900)
+        margin-right w(50)
+        img
+            width 100%
+        +below(801px)
+            width wm(290)
+            margin-right wm(20)
+
+    &__popup__img
+        width w(3200)
+        margin-left w(85)
+        img
+            width 100%
+        +below(801px)
+            display none
+
+    &__popup__img-mobile
+        width w(3200)
+        margin-left w(85)
+        img
+            width 100%
+        +below(801px)
+            margin-top wm(20)
+            width wm(290)
 
 .pink {
     background-color $c-pink !important
