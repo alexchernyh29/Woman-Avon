@@ -7,6 +7,7 @@
         overflow-y hidden
 
     &__wrap
+        margin w(50) 0
         position relative
         display flex
         flex-direction row
@@ -30,8 +31,11 @@
             display none
 
     &__info
+        display flex
+        flex-direction column
+        align-items flex-end
         max-width 50%
-        padding-top w(155)
+        padding-top w(130)
         margin-right w(150)
         border-top w(1) solid $c-pink
         +below(801px)
@@ -40,7 +44,8 @@
             margin-right wm(0)
 
     &__topic
-        font-family $ff-Montserrat
+        align-self flex-start
+        font-family $ff-Montserrat-Bold
         font-size w(51)
         font-weight 700
         line-height w(66)
@@ -51,7 +56,7 @@
 
     &__title
         margin-top w(35)
-        font-family $ff-Montserrat
+        font-family $ff-Montserrat-Bold
         font-size w(25)
         font-weight 600
         line-height w(32)
@@ -213,10 +218,52 @@
             margin-top wm(20)
             width wm(290)
 
-.pink {
-    background-color $c-pink !important
+    &__next
+        margin-top w(85)
+        width w(350)
+        height w(95)
+        border-radius w(50)
+        background #e5004a
+        display flex
+        flex-direction row
+        justify-content center
+        align-items center
+        +below(801px)
+            margin-top wm(40)
+            width wm(350)
+            height wm(95)
+            border-radius wm(50)
+            align-self center
+
+    &__next-text
+        font-family $ff-Montserrat
+        color $c-white
+        font-size w(35)
+        font-weight 400
+        line-height w(45)
+        margin-right w(40)
+        +below(801px)
+            font-size wm(53)
+            line-height wm(55)
+            margin-right wm(10)
+
+    &__next-img
+        width w(50)
+        img
+            width 100%
+        +below(801px)
+            width wm(55)
+
+
+.white {
+    background-color $c-white !important
 }
 .active-hover{
     background-color $c-pink
+    transition .5s
+}
+
+.test__item.active-hover .test__text{
+    color $c-white
     transition .5s
 }

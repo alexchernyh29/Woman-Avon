@@ -30,24 +30,25 @@ $(() => {
 		);
 	}
 
-	$('.test__item').on('click', function(){
-		$('.test__item.pink').removeClass('pink');
-		$(this).addClass('pink');
-	});
-
+	// $('.test__item').on('click', function(){
+	// 	$('.test__item.pink').removeClass('pink');
+	// 	$(this).addClass('pink');
+	// });
 	$('.test__item').hover(function() {
 		$(this).addClass('active-hover');
 	  }, function() {
 		$(this).removeClass('active-hover');
 	  });
-
+	
 	$('.test__close').on('click', function(){
 		$(".test__popup").fadeOut();
 	});
 
 	$(".test").on("click", ".test__item", function (e) {
-		$(".test__popup").fadeIn();
-		setTimeout(() => {
+		$(".test__next").off("click");
+		$(".test__next").on("click", function () {
+			$(".test__popup").fadeIn();
+			$(".test__next").off("click");
 			$(".test__item").removeClass("pink");
 			$(".test__item").removeClass('active-hover');
 			const id = $(e.target).closest(".test__item").data("id");
@@ -57,6 +58,7 @@ $(() => {
 			}
 			$(".test__popup__text").text(questions[activeIndex].answers[id].advice);
 			activeIndex += 1;
+	
 			if (activeIndex >= questions.length) {
 				$(".result").addClass("is-active");
 				$(".result__text").text("Вы правильно ответили на " + correctAnswers + " из " + questions.length + " вопросов");
@@ -71,13 +73,10 @@ $(() => {
 					$(".result").removeClass("is-active");
 					resetQuiz();
 				});
+			} else {
+				showQuestion();
 			}
-			if (activeIndex >= questions.length) {
-				activeIndex = 0;
-			}
-			showQuestion();
-		}, 0)
-		
+		});
 	});
 
 	function resetQuiz() {
