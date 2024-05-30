@@ -2,7 +2,7 @@ mixin test()
     +b('section').test()
         +e.wrap
             +e.picture
-                img(src='./images/test-img-1.jpg')
+                img(src='./images/test-img-1.png')
             +e.info
                 +e('p').topic Увлажнение 
                 +e('p').title Что для вас главное в выборе подарка?
@@ -21,6 +21,17 @@ mixin test()
                     +e('p').next-text Далее
                     +e.next-img
                         img(src='./images/next.svg')
+            +e.result
+                +e('p').result__title Отлично, вы почти на финише! Чтобы ваш гайд был более персонализированным, введите свои имя и возраст.
+                +e.result__list
+                    +e('input')(id="name" name="name" type="text" placeholder="ИМЯ").result__input
+                    +e('input')(id="age" name="age" type="number" placeholder="ВОЗРАСТ").result__input
+                    +e.result__next
+                        +e('p').next-text Далее
+                        +e.next-img
+                            img(src='./images/next.svg')
+                    +e.result__img-mobile
+                        img(src='./images/test-img-1.png')
         +e.popup
             +e.close
                 img(src='./images/close.png')
@@ -31,7 +42,7 @@ mixin test()
                     +e('p').popup__title Совет бьюти-эксперта<br><span>Марии Тараненко</span>
                     +e('p').popup__text
                 +e.popup__img
-                    img(src='./images/test-img-1.jpg')
+                    img(src='./images/test-img-1.png')
                 +e.popup__mobile
                     +e.info__mobile
                         +e.author-img-mobile
@@ -39,6 +50,6 @@ mixin test()
                         +e('p').popup__title Совет<br>бьюти-эксперта<br><span>Марии Тараненко</span>
                     +e('p').popup__text
                     +e.popup__img-mobile
-                        img(src='./images/test-img-1.jpg')
+                        img(src='./images/test-img-1.png')
 
                 

@@ -30,20 +30,14 @@ $(() => {
 		);
 	}
 
-	// $('.test__item').on('click', function(){
-	// 	$('.test__item.pink').removeClass('pink');
-	// 	$(this).addClass('pink');
-	// });
-	$('.test__item').hover(function() {
+	$('.test__item').on('click', function(){
+		$('.test__item.active-hover').removeClass('active-hover');
 		$(this).addClass('active-hover');
-	  }, function() {
-		$(this).removeClass('active-hover');
-	  });
+	});
 	
 	$('.test__close').on('click', function(){
 		$(".test__popup").fadeOut();
 	});
-
 	$(".test").on("click", ".test__item", function (e) {
 		$(".test__next").off("click");
 		$(".test__next").on("click", function () {
@@ -60,19 +54,31 @@ $(() => {
 			activeIndex += 1;
 	
 			if (activeIndex >= questions.length) {
-				$(".result").addClass("is-active");
-				$(".result__text").text("Вы правильно ответили на " + correctAnswers + " из " + questions.length + " вопросов");
-				if (correctAnswers <= 4){
-					$(".result__title").html(results[0].info);
-					$(".result__img").html(`<img src="${results[0].image}" />`);
-				} else {
-					$(".result__title").html(results[1].info);
-					$(".result__img").html(`<img src="${results[1].image}" />`);
-				}
-				$(".result__button").on("click", function () {
-					$(".result").removeClass("is-active");
-					resetQuiz();
-				});
+				$(".test__info").fadeOut();
+				$(".test__result").show();
+				$('.test__result__next').on('click', function(){
+						const userName = $("#name").val();
+						const userAge = $("#age").val();
+						const data = {
+						name: userName,
+						age: userAge,
+						};
+						console.log(data);
+						// Отправка данных на сервер
+						$.ajax({
+						url: '/save_result/',
+						method: 'POST',
+						contentType: 'application/json',
+						data: JSON.stringify(data),
+						success: function(response) {
+							// Редирект по полученной ссылке
+							window.location.href = response.redirectUrl;
+						},
+						error: function(err) {
+							console.error('Error:', err);
+						}
+						});
+					});
 			} else {
 				showQuestion();
 			}

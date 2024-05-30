@@ -4,25 +4,23 @@
     height 100%
     +below(801px)
         height 100vh
-        overflow-y hidden
+        overflow scroll
 
     &__wrap
         margin w(50) 0
         position relative
         display flex
         flex-direction row
-        align-items center
+        align-items flex-start
         justify-content center
-        height 100vh
         +below(801px)
             align-items flex-start
             margin wm(55) wm(50)
 
     &__picture
-        width w(1000)
+        max-width 40%
         height 100%
-        align-content center
-        margin-right w(100)
+        padding-right w(100)
         img
             width 100%
         
@@ -33,8 +31,8 @@
         display flex
         flex-direction column
         align-items flex-end
-        max-width 50%
-        padding-top w(130)
+        max-width 60%
+        padding-top w(70)
         margin-right w(150)
         border-top w(1) solid $c-pink
         +below(801px)
@@ -89,6 +87,13 @@
         align-items center
         &:first-child
             margin-top w(0)
+
+        &:hover
+            background-color $c-pink
+            transition .5s
+            .test__text
+                color $c-white
+                transition .5s
         
         +below(801px)
             padding wm(18)
@@ -253,7 +258,82 @@
         +below(801px)
             width wm(55)
 
+    &__result
+        display none
+        max-width 60%
+        padding-top w(70)
+        margin-right w(150)
+        border-top w(1) solid $c-pink
+        +below(801px)
+            max-width 100%
+            padding-top wm(55)
+            margin-right wm(0)
 
+    &__result__title
+        margin-top w(35)
+        font-family $ff-Montserrat-Bold
+        font-size w(25)
+        font-weight 600
+        line-height w(32)
+        color $c-black
+        +below(801px)
+            font-size wm(40)
+            line-height wm(52)
+
+    &__result__list
+        margin-top w(120)
+        display flex
+        flex-direction column
+
+    &__result__input
+        background $c-white
+        border w(1) solid #7e7e7e
+        border-radius w(50)
+        font-family $ff-Montserrat
+        font-size w(19)
+        font-weight 600
+        line-height w(25)
+        color #7e7e7e
+        padding w(35) w(55)
+        &:nth-child(2)
+            margin-top w(30)
+        +below(801px)
+            border wm(1) solid #7e7e7e
+            padding wm(35) wm(55)
+            margin-top wm(35)
+            border-radius wm(100)
+            font-size wm(30)
+            line-height wm(39)
+            &:nth-child(2)
+                margin-top wm(30)
+
+    &__result__next
+        margin-top w(85)
+        width w(350)
+        height w(95)
+        border-radius w(50)
+        background #e5004a
+        display flex
+        flex-direction row
+        justify-content center
+        align-items center
+        align-self flex-end
+        +below(801px)
+            margin-top wm(40)
+            width wm(350)
+            height wm(95)
+            border-radius wm(50)
+            align-self center
+
+    &__result__img-mobile
+        display none
+        +below(801px)
+            margin-top wm(100)
+            display block
+            max-width 100%
+            width wm(700)
+            img
+                width 100%
 .white {
     background-color $c-white !important
 }
