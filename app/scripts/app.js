@@ -3,7 +3,7 @@ import DATA from "./data";
 
 let activeIndex = 0;
 let correctAnswers = 0;
-
+let selectedIds = [];
 const { questions, results } = DATA;
 
 
@@ -38,7 +38,13 @@ $(() => {
 	$('.test__close').on('click', function(){
 		$(".test__popup").fadeOut();
 	});
+
+	
 	$(".test").on("click", ".test__item", function (e) {
+		
+		const $testItem = $(e.target).closest(".test__item");
+		const id = $testItem.data("id");
+		selectedIds.push(id+1);
 		$(".test__next").off("click");
 		$(".test__next").on("click", function () {
 			$(".test__popup").fadeIn();
@@ -62,6 +68,7 @@ $(() => {
 						const data = {
 						name: userName,
 						age: userAge,
+						selectedIds: selectedIds
 						};
 						console.log(data);
 						// Отправка данных на сервер
