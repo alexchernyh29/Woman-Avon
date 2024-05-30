@@ -38,11 +38,6 @@ $(() => {
 	$('.test__next').on('click', function(){
 		$(".test__popup").fadeOut();
 	});
-
-	$('.test__age-option').on('click', function(){
-		
-	});
-
 	
 	$(".test").on("click", ".test__item", function (e) {
 		$(".test__popup").fadeIn();
@@ -55,25 +50,26 @@ $(() => {
 		}
 		$(".test__popup__text").text(questions[activeIndex].answers[id].advice);
 		activeIndex += 1;
-		if (activeIndex >= questions.length) {
-			$('.test__next').on('click', function(){
-				$(".test__info").fadeOut();
-				$(".test__result").show();
-				$('.test__age-option').click(function() {
-					$('.test__age-option.active').removeClass('active');
-					$(this).addClass('active');
-					selectedRedirectUrl = $(this).data('redirect-url');
-				});
+		$('.test__next').on('click', function(){
+			if (activeIndex >= questions.length) {
+					$(".test__info").fadeOut();
+					$(".test__result").show();
+					$('.test__age-option').click(function() {
+						$('.test__age-option.active').removeClass('active');
+						$(this).addClass('active');
+						selectedRedirectUrl = $(this).data('redirect-url');
+					});
 
-				$('.test__result__next').click(function() {
-					if (selectedRedirectUrl) {
-						window.location.href = selectedRedirectUrl;
-					}
-				});
-			});
-		} else {
-			showQuestion();
-		}
+					$('.test__result__next').click(function() {
+						if (selectedRedirectUrl) {
+							window.location.href = selectedRedirectUrl;
+						}
+					});
+				
+			} else {
+				showQuestion();
+			}
+		});
 	});
 	showQuestion();
 });
