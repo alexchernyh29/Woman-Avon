@@ -3,7 +3,7 @@ import DATA from "./data";
 
 let activeIndex = 0;
 let correctAnswers = 0;
-let selectedIds = [];
+let selectedRedirectUrl = null;
 const { questions, results } = DATA;
 
 
@@ -35,69 +35,44 @@ $(() => {
 		$(this).addClass('active-hover');
 	});
 	
-	$('.test__close').on('click', function(){
+	$('.test__next').on('click', function(){
 		$(".test__popup").fadeOut();
+	});
+
+	$('.test__age-option').on('click', function(){
+		
 	});
 
 	
 	$(".test").on("click", ".test__item", function (e) {
-		
-		const $testItem = $(e.target).closest(".test__item");
-		const id = $testItem.data("id");
-		selectedIds.push(id+1);
-		$(".test__next").off("click");
-		$(".test__next").on("click", function () {
-			$(".test__popup").fadeIn();
-			$(".test__next").off("click");
-			$(".test__item").removeClass("pink");
-			$(".test__item").removeClass('active-hover');
-			const id = $(e.target).closest(".test__item").data("id");
-			const Answer = questions[activeIndex].answers[id].Answer;
-			if (Answer) {
-				correctAnswers++;
-			}
-			$(".test__popup__text").text(questions[activeIndex].answers[id].advice);
-			activeIndex += 1;
-	
-			if (activeIndex >= questions.length) {
-				$(".test__info").fadeOut();
-				$(".test__result").show();
-				$('.test__result__next').on('click', function(){
-						const userName = $("#name").val();
-						const userAge = $("#age").val();
-						const data = {
-						name: userName,
-						age: userAge,
-						selectedIds: selectedIds
-						};
-						console.log(data);
-						// Отправка данных на сервер
-						$.ajax({
-							url: '/save_result/',
-							method: 'POST',
-							contentType: 'application/json',
-							data: JSON.stringify(data),
-							success: function(response) {
-								// Редирект по полученной ссылке
-								window.location.href = response.redirectUrl;
-							},
-							error: function(err) {
-								console.error('Error:', err);
-							}
-						});
-					});
-			} else {
-				showQuestion();
-			}
-		});
+		$(".test__popup").fadeIn();
+		$(".test__item").removeClass("pink");
+		$(".test__item").removeClass('active-hover');
+		const id = $(e.target).closest(".test__item").data("id");
+		const Answer = questions[activeIndex].answers[id].Answer;
+		if (Answer) {
+			correctAnswers++;
+		}
+		$(".test__popup__text").text(questions[activeIndex].answers[id].advice);
+		activeIndex += 1;
+
+		if (activeIndex >= questions.length) {
+			$(".test__info").fadeOut();
+			$(".test__result").show();
+			$('.test__age-option').click(function() {
+                $('.test__age-option.active').removeClass('active');
+				$(this).addClass('active');
+                selectedRedirectUrl = $(this).data('redirect-url');
+            });
+
+            $('.test__result__next').click(function() {
+                if (selectedRedirectUrl) {
+                    window.location.href = selectedRedirectUrl;
+                }
+            });
+		} else {
+			showQuestion();
+		}
 	});
-
-	function resetQuiz() {
-		activeIndex = 0;
-		correctAnswers = 0;
-		showQuestion();
-		$(".test__popup").hide();
-	}
-
 	showQuestion();
 });

@@ -17,24 +17,23 @@ mixin test()
                         +e('p').text Дарю только то, что нравится мне
                     +e('li').item(data-id='E')
                         +e('p').text Дарю только то, что нравится мне
-                +e.next
-                    +e('p').next-text Далее
-                    +e.next-img
-                        img(src='./images/next.svg')
             +e.result
                 +e('p').result__title Отлично, вы почти на финише! Чтобы ваш гайд был более персонализированным, введите свои имя и возраст.
                 +e.result__list
-                    +e('input')(id="name" name="name" type="text" placeholder="ИМЯ").result__input
-                    +e('input')(id="age" name="age" type="number" placeholder="ВОЗРАСТ").result__input
+                    +e.result__wrap
+                        +e.result__container
+                            +e.age-option(data-redirect-url="/result/1/") 25+
+                            +e.age-option(data-redirect-url="/result/2/") 35+
+                        +e.result__container
+                            +e.age-option(data-redirect-url="/result/3/") 45+
+                            +e.age-option(data-redirect-url="/result/4/") 55+
                     +e.result__next
-                        +e('p').next-text Далее
+                        +e('p').next-text ДАЛЕЕ
                         +e.next-img
                             img(src='./images/next.svg')
                     +e.result__img-mobile
                         img(src='./images/test-img-1.png')
         +e.popup
-            +e.close
-                img(src='./images/close.png')
             +e.popup__wrap
                 +e.author-img
                     img(src='./images/author.png')
@@ -51,5 +50,9 @@ mixin test()
                     +e('p').popup__text
                     +e.popup__img-mobile
                         img(src='./images/test-img-1.png')
+            +e.next
+                +e('p').next-text ДАЛЕЕ
+                +e.next-img
+                    img(src='./images/next.svg')
 
                 

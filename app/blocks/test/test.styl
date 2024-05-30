@@ -54,7 +54,7 @@
 
     &__title
         margin-top w(35)
-        font-family $ff-Montserrat-Bold
+        font-family $ff-Montserrat-Semibold
         font-size w(25)
         font-weight 600
         line-height w(32)
@@ -68,7 +68,7 @@
         height 100%
         display flex
         flex-flow column
-        margin-top w(20)
+        margin-top w(50)
         +below(801px)
             margin-top wm(20)
             margin-right wm(0)
@@ -77,8 +77,8 @@
         cursor pointer
         box-sizing border-box
         border 1px solid $c-pink
-        border-radius w(50)
-        background-color transparent
+        border-radius w(100)
+        background-color $c-white
         padding w(35) w(20)
         margin-top w(25)
         transition .5s
@@ -116,8 +116,8 @@
     &__popup
         display none
         position absolute
-        padding w(25) w(85) w(135)
-        max-width w(1600)
+        padding w(25) w(85) w(25)
+        max-width w(1460)
         width 100%
         top 50%
         left 50%
@@ -140,7 +140,7 @@
             width wm(100)
 
     &__popup__wrap
-        margin-top w(120)
+        margin-top w(60)
         display flex
         flex-direction row
         justify-content space-between
@@ -224,7 +224,7 @@
             width wm(290)
 
     &__next
-        margin-top w(85)
+        margin w(85) 0 0 70%
         width w(350)
         height w(95)
         border-radius w(50)
@@ -234,7 +234,7 @@
         justify-content center
         align-items center
         +below(801px)
-            margin-top wm(40)
+            margin wm(25) 0 0 30%
             width wm(350)
             height wm(95)
             border-radius wm(50)
@@ -270,9 +270,28 @@
             padding-top wm(55)
             margin-right wm(0)
 
+    &__result__wrap
+        display flex
+        flex-direction row
+        justify-content flex-start
+        +below(801px)
+            flex-direction column
+
+    &__result__container
+        display flex
+        flex-direction row
+        justify-content flex-start
+        &:first-child
+            margin-right w(60)
+        +below(801px)
+            justify-content space-evenly
+            &:first-child
+                margin-right wm(0)
+                margin-bottom wm(55)
+
     &__result__title
         margin-top w(35)
-        font-family $ff-Montserrat-Bold
+        font-family $ff-Montserrat-Semibold
         font-size w(25)
         font-weight 600
         line-height w(32)
@@ -286,34 +305,39 @@
         display flex
         flex-direction column
 
-    &__result__input
+    &__age-option
+        margin-left w(60)
+        border-radius 100%
+        border w(2) solid $c-pink
         background $c-white
-        border w(1) solid #7e7e7e
-        border-radius w(50)
         font-family $ff-Montserrat
-        font-size w(19)
-        font-weight 600
-        line-height w(25)
-        color #7e7e7e
-        padding w(35) w(55)
-        &:nth-child(2)
-            margin-top w(30)
+        font-size w(47)
+        font-weight 400
+        line-height w(66)
+        color $c-pink
+        padding w(40)
+        transition .5s
+        &:first-child
+            margin-left 0
+        &.active
+            background $c-pink
+            color $c-white
+        &:hover
+            background $c-pink
+            color $c-white
+            transition .5s   
         +below(801px)
-            border wm(1) solid #7e7e7e
-            padding wm(35) wm(55)
-            margin-top wm(35)
-            border-radius wm(100)
-            font-size wm(30)
-            line-height wm(39)
-            &:nth-child(2)
-                margin-top wm(30)
+            border wm(2) solid $c-pink
+            font-size wm(70)
+            line-height wm(98)
+            padding wm(40)
 
     &__result__next
         margin-top w(85)
         width w(350)
         height w(95)
         border-radius w(50)
-        background #e5004a
+        background $c-pink
         display flex
         flex-direction row
         justify-content center
