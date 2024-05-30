@@ -66,17 +66,17 @@ $(() => {
 						console.log(data);
 						// Отправка данных на сервер
 						$.ajax({
-						url: '/save_result/',
-						method: 'POST',
-						contentType: 'application/json',
-						data: JSON.stringify(data),
-						success: function(response) {
-							// Редирект по полученной ссылке
-							window.location.href = response.redirectUrl;
-						},
-						error: function(err) {
-							console.error('Error:', err);
-						}
+							url: '/save_result/',
+							method: 'POST',
+							contentType: 'application/json',
+							data: JSON.stringify(data),
+							success: function(response) {
+								// Редирект по полученной ссылке
+								window.location.href = response.redirectUrl;
+							},
+							error: function(err) {
+								console.error('Error:', err);
+							}
 						});
 					});
 			} else {
