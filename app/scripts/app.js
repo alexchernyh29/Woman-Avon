@@ -48,7 +48,7 @@ $(() => {
 		if (Answer) {
 			correctAnswers++;
 		}
-		$(".test__popup__text").text(questions[activeIndex].answers[id].advice);
+		$(".test__popup__text").html(questions[activeIndex].answers[id].advice);
 		activeIndex += 1;
 		$('.test__next').on('click', function(){
 			if (activeIndex >= questions.length) {
